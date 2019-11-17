@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../partials/header') %>
+  </head>
+  <body>
+      <%- include('../partials/navbar') %>
+    <h1></h1>
+    <form action= "/movies/new" method="POST">
+        <label style="width: 125px;">Airline: </label>
+        <input type="text" name="airline"> <br>
+        <label style="width: 125px;">Flight Number: </label>
+        <input type="text" name="flightNo"> <br>
+        <label style="width: 125px;">Departure Time: </label>
+        <input type="text" name="departs"> <br>
+        <button type="submit">Add Flight</button>
+    </form>
+    <%- include('../partials/footer') %>
+
+  </body>
+</html>

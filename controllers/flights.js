@@ -1,0 +1,1 @@
+var Flight = require('../models/flights');

@@ -4,6 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+//connect to DB
+require('./config/database');
+
+
 var indexRouter = require('./routes/index');
 var flightsRouter = require('./routes/flights');
 
@@ -24,6 +28,7 @@ app.use('/flights', flightsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  // console.log(req.protocol + "://" + req.get('host') + req.originalUrl);
   next(createError(404));
 });
 
