@@ -6,13 +6,18 @@
   <body>
       <%- include('../partials/navbar') %>
     <h1></h1>
-    <form action= "/movies/new" method="POST">
+    <form action= "/flights/new" method="POST">
         <label style="width: 125px;">Airline: </label>
-        <input type="text" name="airline"> <br>
+        <select required style="width: 125px;" name="airline">
+          <option selected disabled value=""></option>
+          <option value="American">American</option>
+          <option value="Southwest">Southwest</option>
+          <option value="United">United</option>
+        </select> <br>
         <label style="width: 125px;">Flight Number: </label>
-        <input type="text" name="flightNo"> <br>
+        <input required min="10" max="9999" type="number" name="flightNo"> <br>
         <label style="width: 125px;">Departure Time: </label>
-        <input type="text" name="departs"> <br>
+        <input type="datetime-local" name="departs"> <br>
         <button type="submit">Add Flight</button>
     </form>
     <%- include('../partials/footer') %>

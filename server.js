@@ -28,7 +28,7 @@ app.use('/flights', flightsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  // console.log(req.protocol + "://" + req.get('host') + req.originalUrl);
+  console.log(req.protocol + "://" + req.get('host') + req.originalUrl);
   next(createError(404));
 });
 

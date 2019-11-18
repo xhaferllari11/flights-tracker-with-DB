@@ -1,14 +1,12 @@
 var express = require('express');
 var router = express.Router();
+var flightsCtrl = require('../controllers/flights');
 
 /* GET users listing. */
 
-router.get('/new', function(req, res, next){
-  console.log('went in');
-  res.render('flights/new', {title: 'Flights Tracker'});
-})
+router.get('/new', flightsCtrl.new)
+router.post('/new', flightsCtrl.create);
 
-router.get('/', function(req, res, next) {
-  res.render('flights/index', {title: 'Flights Tracker'});
-});
+router.get('/', flightsCtrl.index);
+
 module.exports = router;

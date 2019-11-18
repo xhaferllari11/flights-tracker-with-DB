@@ -6,6 +6,32 @@
   <body>
       <%- include('../partials/navbar') %>
     <h1></h1>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Airline</th>
+          <th scope="col">Flight Number</th>
+          <th scope="col">Departure Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% flightDocs.forEach(function(flightDoc){ %>
+          <tr>
+            <td><%=flightDoc.airline%></td>
+            <td><%=flightDoc.flightNo%></td>
+            <td><%=flightDoc.departs%></td>
+          </tr>
+        <% }) %>
+        
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+        </tr>
+      </tbody>
+    </table>
+
+
     <a class="btn btn-primary" href="/flights/new" role="button">New Flight</a>
     <%- include('../partials/footer') %>
 

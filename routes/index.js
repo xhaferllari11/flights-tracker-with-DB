@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   let x = new Date().setFullYear(new Date().getFullYear()+1);
   
-  console.log( x);
+  console.log(x);
   res.render('index', { title: 'Flights Tracker' });
 });
 
