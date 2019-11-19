@@ -1,6 +1,21 @@
 const mongoose = require('mongoose');
 
+// I should make a new Airport model for reference instead of embed
 
+const destinationSchema = new mongoose.Schema({
+    airport: {
+        type: String,
+        enum: ['AUS','DAL','LAX','SAN','SEA']
+    },
+    arrival: {
+        type: Date,
+        default: function(){
+            const currDate = new Date();
+            currDate.setFullYear(currDate.getFullYear()+1);
+            return currDate;
+        }
+    }
+});
 
 const flightsSchema = new mongoose.Schema({
     airline: {
@@ -11,9 +26,17 @@ const flightsSchema = new mongoose.Schema({
         type: Date,
         default: function(){
             const currDate = new Date();
-            return currDate.setFullYear(currDate.getFullYear()+1)
+            currDate.setFullYear(currDate.getFullYear()+1);
+            return currDate;
         }
-    }
+    },
+    airport: {
+        type: String,
+        enum: ['AUS','DAL','LAX','SAN','SEA'],
+        default: 'SAN'
+    },
+    destinations: [destinationSchema]
 });
 
 module.exports = mongoose.model('Flight', flightsSchema);
+

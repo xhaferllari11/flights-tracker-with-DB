@@ -1,39 +1,35 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <%- include('../partials/header') %>
-  </head>
-  <body>
-      <%- include('../partials/navbar') %>
-    <h1></h1>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Airline</th>
-          <th scope="col">Flight Number</th>
-          <th scope="col">Departure Time</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% flightDocs.forEach(function(flightDoc){ %>
-          <tr>
-            <td><%=flightDoc.airline%></td>
-            <td><%=flightDoc.flightNo%></td>
-            <td><%=flightDoc.departs.toLocaleString()%></td>
-          </tr>
-        <% }) %>
-        
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-        </tr>
-      </tbody>
-    </table>
+<%- include('../partials/header') %>
 
 
-    <a class="btn btn-primary" href="/flights/new" role="button">New Flight</a>
-    <%- include('../partials/footer') %>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Airline</th>
+      <th scope="col">Flight Number</th>
+      <th scope="col">Departure Time</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% flightDocs.forEach(function(flightDoc){ %>
+    <tr>
+      <td><%=flightDoc.airline%></td>
+      <td><%=flightDoc.flightNo%></td>
+      <td><%=moment(flightDoc.departs).format("MMM D YYYY, h:mm a")%></td>
+      <td>
+        <a class="btn btn-primary" href="/flights/<%=flightDoc._id%>" role="button">Details</a>
+      </td>
+    </tr>
+    <% }) %>
 
-  </body>
-</html>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<a class="btn btn-primary" href="/flights/new" role="button">New Flight</a>
+<%- include('../partials/footer') %>

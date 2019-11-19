@@ -1,12 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var indexCtrl = require('../controllers/index');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  let x = new Date().setFullYear(new Date().getFullYear()+1);
-  
-  console.log(x);
-  res.render('index', { title: 'Flights Tracker' });
-});
+router.get('/', indexCtrl.index);
 
 module.exports = router;

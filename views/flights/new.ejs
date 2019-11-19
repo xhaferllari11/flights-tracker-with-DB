@@ -1,26 +1,27 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <%- include('../partials/header') %>
-  </head>
-  <body>
-      <%- include('../partials/navbar') %>
-    <h1></h1>
-    <form action= "/flights/new" method="POST">
-        <label style="width: 125px;">Airline: </label>
-        <select required style="width: 125px;" name="airline">
-          <option selected disabled value=""></option>
-          <option value="American">American</option>
-          <option value="Southwest">Southwest</option>
-          <option value="United">United</option>
-        </select> <br>
-        <label style="width: 125px;">Flight Number: </label>
-        <input required min="10" max="9999" type="number" name="flightNo"> <br>
-        <label style="width: 125px;">Departure Time: </label>
-        <input type="datetime-local" name="departs"> <br>
-        <button type="submit">Add Flight</button>
-    </form>
-    <%- include('../partials/footer') %>
+<%- include('../partials/header') %>
 
-  </body>
-</html>
+<form action="/flights/new" method="POST">
+  <label >Airline: </label>
+  <select required style="width: 125px;" name="airline">
+    <option selected disabled value=""></option>
+    <option value="American">American</option>
+    <option value="Southwest">Southwest</option>
+    <option value="United">United</option>
+  </select> <br>
+  <label>Flight Number: </label>
+  <input required min="10" max="9999" type="number" name="flightNo"> <br>
+  <label>Airport: </label>  
+  <select required style="width: 125px;" name="airport">
+      <option selected disabled value=""></option>
+      <option value="AUS">AUS</option>
+      <option value="DAL">DAL</option>
+      <option value="LAX">LAX</option>
+      <option value="SAN">SAN</option>
+      <option value="SEA">SEA</option>
+  </select> <br>
+  <label>Departure Time: </label>
+  <input type="datetime-local" name="departs"> <br>
+  <button type="submit">Add Flight</button>
+</form>
+
+<%- include('../partials/footer') %>

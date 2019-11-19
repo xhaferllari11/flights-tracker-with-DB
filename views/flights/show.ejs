@@ -1,0 +1,48 @@
+<%- include('../partials/header') %>
+
+<h2><%= flight.airline %> Flight No: <%= flight.flightNo%> </h2>
+
+<p><strong>Airport:</strong> <%= flight.airport %></p>
+<p><strong>Departs:</strong> <%= moment(flight.departs).format("MMM D YYYY, h:mm a") %></p>
+
+<form style="margin-top: 7%" action="/flights/<%= flight._id %>/destinations" method="POST">
+    <label style="width: 160px;">Destination Airport: </label>  
+    <select required style="width: 125px;" name="airport">
+        <option selected disabled value=""></option>
+        <option value="AUS" <%= checkAirports("AUS",flight.destinations,flight.airport) %> >AUS</option>
+        <option value="DAL" <%= checkAirports("DAL",flight.destinations,flight.airport) %> >DAL</option>
+        <option value="LAX" <%= checkAirports("LAX",flight.destinations,flight.airport) %> >LAX</option>
+        <option value="SAN" <%= checkAirports("SAN",flight.destinations,flight.airport) %> >SAN</option>
+        <option value="SEA" <%= checkAirports("SEA",flight.destinations,flight.airport) %> >SEA</option>
+    </select> <br>
+    <label style="width: 160px;">Arrival Time: </label>
+    <input type="datetime-local" name="arrival"> <br>
+    <button style="margin-left: 160px" type="submit" class="btn btn-primary">Add New Destination</button>
+</form>
+
+<h6 style="margin-top: 7%">Current Destinations</h6>
+
+<% if (flight.destinations.length) { %>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Airport</th>
+            <th scope="col">Arrival Time</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% flight.destinations.sort(); %>
+        <% flight.destinations.forEach(function(dest){ %>
+        <tr>
+            <td><%= dest.airport %></td>
+            <td><%= moment(dest.arrival).format("MMM D YYYY, h:mm a") %></td>
+        </tr>
+        <% }); %>
+    </tbody>
+</table>
+<% } else { %>
+<p>No possible destinations right now.</p>
+<% } %>
+
+<%- include('../partials/footer') %>
