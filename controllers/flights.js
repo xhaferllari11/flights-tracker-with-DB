@@ -1,4 +1,4 @@
-var Flight = require('../models/flights');
+var Flight = require('../models/flight');
 var moment = require('moment');
 
 var passInObj = {title: 'Flights Tracker'};
