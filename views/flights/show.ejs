@@ -6,14 +6,14 @@
 <p><strong>Departs:</strong> <%= moment(flight.departs).format("MMM D YYYY, h:mm a") %></p>
 
 <form style="margin-top: 7%" action="/flights/<%= flight._id %>/destinations" method="POST">
-    <label style="width: 160px;">Destination Airport: </label>  
+    <label style="width: 160px;">Destination Airport: </label>
     <select required style="width: 125px;" name="airport">
         <option selected disabled value=""></option>
-        <option value="AUS" <%= checkAirports("AUS",flight.destinations,flight.airport) %> >AUS</option>
-        <option value="DAL" <%= checkAirports("DAL",flight.destinations,flight.airport) %> >DAL</option>
-        <option value="LAX" <%= checkAirports("LAX",flight.destinations,flight.airport) %> >LAX</option>
-        <option value="SAN" <%= checkAirports("SAN",flight.destinations,flight.airport) %> >SAN</option>
-        <option value="SEA" <%= checkAirports("SEA",flight.destinations,flight.airport) %> >SEA</option>
+        <option value="AUS" <%= checkAirports("AUS",flight.destinations,flight.airport) %>>AUS</option>
+        <option value="DAL" <%= checkAirports("DAL",flight.destinations,flight.airport) %>>DAL</option>
+        <option value="LAX" <%= checkAirports("LAX",flight.destinations,flight.airport) %>>LAX</option>
+        <option value="SAN" <%= checkAirports("SAN",flight.destinations,flight.airport) %>>SAN</option>
+        <option value="SEA" <%= checkAirports("SEA",flight.destinations,flight.airport) %>>SEA</option>
     </select> <br>
     <label style="width: 160px;">Arrival Time: </label>
     <input type="datetime-local" name="arrival"> <br>
@@ -47,13 +47,48 @@
 
 <a class="btn btn-primary" href="/flights/<%= flight._id %>/tickets/new" role="button">Add New Ticket</a>
 
-<section class="plane-container">
-    <section class="airplane">
-        <div class="seat"></div>
-    </section>
+<section class="airplane">
+    <small style="grid-column-start: 1;"></small>
+    <small style="grid-column-start: 1;">A</small>
+    <small style="grid-column-start: 1;">B</small>
+    <small style="grid-column-start: 1;">C</small>
+    <small style="grid-column-start: 1;">D</small>
+    <small style="grid-column-start: 1;">E</small>
+    <small style="grid-column-start: 1;">F</small>
+    <small style="grid-area: 1/2/2/3">1</small>
+    <small style="grid-area: 1/11/2/12">10</small>
+    <small style="grid-area: 1/21/2/22">20</small>
+    <small style="grid-area: 1/31/2/32">30</small>
+    <small style="grid-area: 1/41/2/42">40</small>
+    <small style="grid-area: 1/51/2/52">50</small>
+    <small style="grid-area: 1/61/2/62">60</small>
+    <small style="grid-area: 1/71/2/72">70</small>
+    <small style="grid-area: 1/81/2/82">80</small>
+    <small style="grid-area: 1/91/2/92">90</small>
+
+    <% var seats = getSeatArr(tickets); %>
+    <% for (let i = 200; i<800; i= i+100) { %>
+        <% for (let j=1; j<100; j++) { %>
+                <% if (seats.some(function(s) { return ((i+j) == s)})) { %>
+                    <div style="grid-area: <%= i/100 %> / <%= j+1%> / <%=i/100+1 %> / <%= j+2%>;" class="taken"></div>
+                <% } else { %>
+                    <div style="grid-area: <%= i/100 %> / <%= j+1%> / <%=i/100+1 %> / <%= j+2%>;" class="available"></div>
+                <% } %>
+        <% } %>
+    <% } %>
 </section>
 
 
+<h3>The followin seats have been reserved.</h3>
+<h6>Click one to delete:</h6>
+<section class="written-seats">
+    <% tickets.sort(function(a,b){return a.seat>b.seat}) %>
+    <% tickets.forEach(function(tik){ %>
+        <form action="/flights/<%= flight._id %>/tickets/<%= tik._id %>?_method=DELETE" method="POST" style="margin-left: 1%;">
+            <button type="submit"><%= tik.seat%></button>
+        </form>
+    <% }) %>
+</section>
 
 
 <%- include('../partials/footer') %>

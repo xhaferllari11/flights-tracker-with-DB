@@ -10,3 +10,29 @@ a {
 form label {
   width: 125px;
 }
+
+section.airplane {
+  padding: 0 0 10% 0;
+  display: grid;
+  grid-template-columns: 13fr repeat(99, 1fr);
+  grid-template-rows: 2fr repeat(6, 1fr);
+  background-image: url('../images/A321neo_CFM_AIB_VT.png');
+  background-size: cover ;
+  width: 1000px;
+  height: 160px;
+}
+
+section.airplane div.taken {
+  margin: 10%;
+  background-color: red;
+}
+
+section.airplane div.available {
+  margin: 10%;
+  background-color: green;
+}
+
+section.written-seats {
+  display: flex;
+  flex-wrap: wrap;
+}
