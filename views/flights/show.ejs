@@ -47,8 +47,6 @@
 
 <a class="btn btn-primary" href="/flights/<%= flight._id %>/tickets/new" role="button">Add New Ticket</a>
 
-
-
 <section class="airplane">
     <small style="grid-column-start: 1;"></small>
     <small style="grid-column-start: 1;">A</small>
@@ -78,14 +76,17 @@
                 <% } %>
         <% } %>
     <% } %>
-
 </section>
 
 
-The following seats have been reserved:
+<h3>The followin seats have been reserved.</h3>
+<h6>Click one to delete:</h6>
 <section class="written-seats">
+    <% tickets.sort(function(a,b){return a.seat>b.seat}) %>
     <% tickets.forEach(function(tik){ %>
-    <h4> <%= tik.seat%>,</h4>
+        <form action="/flights/<%= flight._id %>/tickets/<%= tik._id %>?_method=DELETE" method="POST" style="margin-left: 1%;">
+            <button type="submit"><%= tik.seat%></button>
+        </form>
     <% }) %>
 </section>
 

@@ -18,12 +18,20 @@ function newTicket(req,res,next){
 function create(req,res,next){
     req.body.flight = req.params.flightId;
     Ticket.create(req.body, function(er, ticket){
-        console.log(ticket);
         res.redirect(`/flights/${req.params.flightId}`);
+    })
+}
+
+function deteleTicket(req,res,next){
+    Ticket.deleteOne({_id: req.params.ticketId})
+    .exec(function(err){
+        console.log(err);
+        res.redirect(`/flights/${req.params.flightId}`)
     })
 }
 
 module.exports = {
     new: newTicket,
-    create
+    create,
+    delete: deteleTicket
 }
