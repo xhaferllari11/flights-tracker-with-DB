@@ -2,7 +2,6 @@ const Ticket = require('../models/ticket');
 const Flight = require('../models/flight');
 
 function newTicket(req,res,next){
-    console.log(req.params.flightId)
     Ticket.find({flight: req.params.flightId})
     .exec(function(err,tickets){
         Flight.findById(req.params.flightId)
